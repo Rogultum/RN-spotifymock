@@ -1,24 +1,33 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
-import { Alert, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { Alert, Pressable, SafeAreaView, ScrollView, Text } from 'react-native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
-import { useSelector } from 'react-redux';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { useDispatch, useSelector } from 'react-redux';
+
+import { setSignUpForm } from '../../../redux/slice/userSlice';
+
 import SignButton from '../../../component/Button/SignButton';
 import Input from '../../../component/Input';
 
+import { auth } from '../../../../firebase/firebase'
+
 import styles from './SignUpScreen.style';
+
 
 function SignUp() {
 
+  const dispatch = useDispatch()
+
+  const { email, password } = useSelector((state) => state.user.value)
+
   const theme = useSelector((state) => state.theme.value);
 
-
   const navigation = useNavigation();
-
-
 
   const [userMail, setUserMail] = useState(null);
   const [userPassword, setUserPassword] = useState(null);
@@ -48,19 +57,20 @@ function SignUp() {
       })
     );
 
+    createUserWithEmailAndPassword(auth, userMail, password)
+
     navigation.navigate('SignIn');
   };
 
-  const userCheck = async () => {
-    const userData = await AsyncStorage.getItem('user');
-    if (userData !== null) {
-      navigation.navigate('SignIn');
-    }
-  };
+  const navigateSignIn = () => {
+    navigation.navigate('SignIn')
+  }
 
-  useEffect(() => {
-    userCheck();
-  }, []);
+  // TODO why redux state gives error missing e-mail
+  // const handleFirebase = () => {
+  //   createUserWithEmailAndPassword(auth, email, password).then(response => { console.log(response.user); })
+  //     .catch((error) => (console.error(error)));
+  // }
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: theme ? 'white' : '#121212' }]}>
@@ -68,13 +78,21 @@ function SignUp() {
         <Input
           label="Type your e-mail"
           placeholder="example@example.com"
-          onChangeText={setUserMail}
+          value={email}
+          onChangeText={(text) => {
+            dispatch(setSignUpForm({ email: text }))
+            setUserMail(text)
+          }}
         />
         <Input
           label="Type your password"
           secureTextEntry
           placeholder="*****"
-          onChangeText={setUserPassword}
+          value={password}
+          onChangeText={(text) => {
+            dispatch(setSignUpForm({ password: text }))
+            setUserPassword(text)
+          }}
         />
         <Input
           label="Re-Type your password"
@@ -83,9 +101,11 @@ function SignUp() {
           onChangeText={setUserPasswordCheck}
         />
         <Input label="Type your username" placeholder="username" onChangeText={setUsername} />
+        <Pressable onPress={navigateSignIn} style={styles.question_container}>
+          <Text style={styles.question_text}>Already have an account?</Text>
+        </Pressable>
       </ScrollView>
       <SignButton title="Sign Up" onPress={handleSignUp} />
-      {/* <SignButton title="Sign Up REDUX" onPress={handleSignUpRedux} /> */}
     </SafeAreaView>
   );
 }

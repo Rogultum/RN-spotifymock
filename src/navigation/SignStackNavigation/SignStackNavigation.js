@@ -14,8 +14,8 @@ function SignStackNavigation() {
 
   return (
     <Stack.Navigator initialRouteName="SignIn" screenOptions={{ headerTintColor: theme ? 'black' : 'white', headerStyle: { backgroundColor: theme ? 'white' : '#121212' } }} >
-      {/* <Stack.Screen name="SignIn" component={SignInScreen} />
-      <Stack.Screen name="SignUp" component={SignUpScreen} /> */}
+      <Stack.Screen name="SignIn" component={SignInScreen} />
+      <Stack.Screen name="SignUp" component={SignUpScreen} />
       <Stack.Screen name="BottomNavigation" component={BottomNavigation} options={{ headerShown: false }} />
     </Stack.Navigator>
   );

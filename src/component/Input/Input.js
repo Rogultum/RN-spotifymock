@@ -18,7 +18,7 @@ function Input({ label, placeholder, onChangeText, secureTextEntry, value, onFoc
           placeholder={placeholder}
           onChangeText={onChangeText}
           secureTextEntry={secureTextEntry}
-          placeholderTextColor={theme ? 'black' : 'white'}
+          placeholderTextColor={theme ? 'black' : 'grey'}
           onFocus={onFocus}
           onBlur={onBlur}
         />

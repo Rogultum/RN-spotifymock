@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { Image, Text, View } from 'react-native';
 
@@ -8,10 +9,11 @@ import { useSelector } from 'react-redux';
 import Input from '../../../component/Input';
 import styles from './ProfileScreen.style';
 
-import { SPOTIFY_GREEN, DARK_THEME, SPOTIFY_BLACK } from '../../../colours/spotifycolours';
+import { SPOTIFY_BLACK } from '../../../colours/spotifycolours';
 import ProfileButton from '../../../component/Button/ProfileButton/ProfileButton';
 
 function ProfileScreen() {
+
     const navigation = useNavigation();
 
     const theme = useSelector((state) => state.theme.value);
@@ -19,6 +21,7 @@ function ProfileScreen() {
     useEffect(() => {
         getUser();
     }, []);
+
     const [userImageUrl, setUserImageUrl] = useState();
     const [user, setUser] = useState({});
 
@@ -27,10 +30,14 @@ function ProfileScreen() {
         setUser(JSON.parse(userData));
     };
 
+    useEffect(() => {
+        getUser();
+    }, [getUser]);
+
     const handleLogout = async () => {
         setUser(null);
         await AsyncStorage.removeItem('user');
-        navigation.navigate('SignUp');
+        navigation.navigate('SignIn');
     };
 
     const navigateEditProfile = () => {
@@ -66,7 +73,7 @@ function ProfileScreen() {
 
                 <ProfileButton title='THEME' onPress={navigateTheme} />
                 <ProfileButton title='EDITPROFILE' onPress={navigateEditProfile} />
-                <ProfileButton title='LOGOUT' onPress={null} />
+                <ProfileButton title='LOGOUT' onPress={handleLogout} />
 
             </View>
         </View>

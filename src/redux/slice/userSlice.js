@@ -14,10 +14,15 @@ export const userSlice = createSlice({
         },
         logout: (state) => {
             state.value = initialStateValue;
+        },
+        setSignUpForm: (state, action) => {
+            state.value.email = action.payload.email;
+            state.value.password = action.payload.password;
+            state.value.username = action.payload.username;
         }
     }
 })
 
-export const { signUp, logout } = userSlice.actions;
+export const { signUp, logout, setSignUpForm } = userSlice.actions;
 
 export default userSlice.reducer;

@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import HomeStackNavigation from "../HomeStackNavigation/HomeStackNavigation";
 import ProfileStackNavigation from "../ProfileStackNavigation/ProfileStackNavigation";
 import SearchStackNavigation from "../SearchStackNavigation/SearchStackNavigation";
+import { DARK_THEME } from "../../colours/spotifycolours";
 
 
 const Tab = createMaterialBottomTabNavigator()
@@ -18,7 +19,7 @@ function BottomNavigation() {
     const theme = useSelector((state) => state.theme.value);
 
     return (
-        <Tab.Navigator activeColor="#1DB954" barStyle={{ backgroundColor: theme ? 'white' : '#121212' }} >
+        <Tab.Navigator activeColor="#1DB954" barStyle={{ backgroundColor: theme ? 'white' : DARK_THEME }} >
             <Tab.Screen name="HomeStack" component={HomeStackNavigation} options={{
                 tabBarLabel: 'Home', tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="home" color={color} size={26} />

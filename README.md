@@ -11,3 +11,11 @@ navigation: [react-navigation](https://reactnavigation.org/)
 albums and tracks on home screen: https://www.theaudiodb.com/api_guide.php
 
 genres on search screen: https://developer.prod.napster.com/developer
+
+Two very slow and enviromental gifs of the app: 
+
+![2022_09_17_03_01_43_trim](https://user-images.githubusercontent.com/48841840/190832028-0625cc9e-ae7c-4685-a726-78fc3a4bf748.gif)
+
+![2022_09_17_02_49_34](https://user-images.githubusercontent.com/48841840/190831804-8467d1d1-4a97-40c5-a76e-3e65a6ac40ce.gif)
+
+

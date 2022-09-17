@@ -4,6 +4,8 @@
 
 This project was built with Expo for PatikaDev Akbank React Native Bootcamp.
 
+#### Used Technologies:
+
 state management: [redux](https://redux.js.org/)
 
 navigation: [react-navigation](https://reactnavigation.org/)
@@ -12,7 +14,19 @@ albums and tracks on home screen: https://www.theaudiodb.com/api_guide.php
 
 genres on search screen: https://developer.prod.napster.com/developer
 
-Two very slow and enviromental gifs of the app: 
+for authentication: Firebase email/password authentication.
+
+#### Quick Description
+
+SignUp and SignIn screens save the user to redux state, AsyncStorage and Firebase
+
+Home screen to list playlists(albums) on the top and random tracks on the body of the screen.
+
+Search screen shows clickable genres and also a search bar.
+
+Profile screen shows username, user profile pic, logout button, theme buttton to navigate to theme screen and change the app theme; edit profile button to edit username and password.
+
+#### Not so quick but environment friendly gifs of the app: 
 
 ![2022_09_17_03_01_43_trim](https://user-images.githubusercontent.com/48841840/190832028-0625cc9e-ae7c-4685-a726-78fc3a4bf748.gif)
 
